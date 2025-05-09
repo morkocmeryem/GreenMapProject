@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harita Uygulaması</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <!-- Giriş Ekranı -->
+  <div id="giris-ekrani">
+    <div class="giris-container">
+      <div class="giris-left">
+        <img src="assets/logo.png" alt="Logo" class="giris-logo" />
+        <h2>Yeşil Alanlar Sitemize Hoş Geldiniz!</h2>
+        <p>
+          Bu web sitesi, yerel yeşil alanları, mevcut parkları ve ağaç dikilebilecek uygun boş alanları harita üzerinde kolayca görebilmeniz için geliştirildi.
+        </p>
+        <div class="giris-amac">
+          <b>AMACIMIZ :</b>
+          <span>Hem doğaya katkıda bulunmak hem de çevre bilincini birlikte güçlendirmek.</span>
+        </div>
+        <div class="giris-list">
+          <b>BU HARİTAYI KULLANARAK :</b>
+          <ul>
+            <li>Var olan park ve yeşil alanları görebilirsiniz,</li>
+            <li>Ağaç dikilebilecek uygun boş alanları kolayca keşfedebilirsiniz,</li>
+            <li>Konumunuzu anlık olarak haritada bulabilirsiniz.</li>
+          </ul>
+        </div>
+        <div class="giris-cta">
+          <b>Sen de bu yeşil dönüşümün bir parçası ol!</b>
+          <button id="kesfetBtn">KEŞFET</button>
+        </div>
+      </div>
+      <div class="giris-right">
+        <img src="assets/agac.jpg" alt="Çevre" class="giris-image" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Harita Ekranı (Başlangıçta gizli) -->
+  <div id="harita-ekrani" style="display: none;">
+    <header class="harita-header">
+      <img src="assets/logo.png" alt="Logo" class="harita-logo" />
+      <h1 class="harita-title">Harita Web Uygulaması</h1>
+      <button id="konumBtn" class="harita-konum-btn">KONUMUMU GÖSTER</button>
+    </header>
+    <main class="harita-main">
+      <div id="map" class="harita-map"></div>
+      <div id="legend" class="harita-legend">
+        <p><span class="green-dot"></span> Yeşil Alanlar</p>
+        <p><span class="empty-box"></span> Boş Alanlar<br>(Ağaç Dikilebiir)</p>
+      </div>
+      <div id="info-box" class="harita-info-box">
+        Bu alan ağaçlandırılabilir.
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    document.getElementById("kesfetBtn").onclick = function() {
+      document.getElementById("giris-ekrani").style.display = "none";
+      document.getElementById("harita-ekrani").style.display = "block";
+    };
+  </script>
+</body>
+</html>
