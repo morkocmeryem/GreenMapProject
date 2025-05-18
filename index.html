@@ -4,11 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Harita Uygulaması</title>
+
+  <!-- 🛡 Giriş yapılmadıysa login sayfasına yönlendir -->
+  <script>
+    const aktifKullanici = localStorage.getItem("aktifKullanici");
+    if (!aktifKullanici) {
+      window.location.href = "login.html";
+    }
+  </script>
+
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
+
+  <!-- 🧹 Çıkış Butonu -->
+  <button onclick="logout()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 10px 18px; background-color: #f44336; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    Çıkış Yap
+  </button>
 
   <!-- Giriş Ekranı -->
   <div id="giris-ekrani">
@@ -61,13 +75,16 @@
     </main>
   </div>
 
-  <script src="js/app.js"></script>
+  <!-- Harita ve JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- 🚪 Çıkış işlemi -->
   <script>
-    document.getElementById("kesfetBtn").onclick = function() {
-      document.getElementById("giris-ekrani").style.display = "none";
-      document.getElementById("harita-ekrani").style.display = "block";
-    };
+    function logout() {
+      localStorage.removeItem("aktifKullanici");
+      window.location.href = "login.html";
+    }
   </script>
 </body>
 </html>

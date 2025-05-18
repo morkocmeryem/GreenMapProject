@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Haritada Keşfet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #d4fc79;
+    }
+
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2e7d32;
+    }
+
+    #map {
+      height: 80vh;
+      width: 90vw;
+      max-width: 1000px;
+      margin: 20px auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .back {
+      background-color: #9e9e9e;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+
+    .back:hover {
+      background-color: #616161;
+    }
+
+    .toolbar {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back" href="menu.html">← Geri Dön</a>
+
+  <div class="container">
+    <h2>🌍 Haritada Keşfet</h2>
+    <p>Konumunuzu alıyor ve çevredeki yeşil alanları gösteriyoruz...</p>
+  </div>
+
+  <div class="toolbar">
+    <label for="filter">Filtrele:</label>
+    <select id="filter" onchange="filterMarkers()">
+      <option value="hepsi">Hepsini Göster</option>
+      <option value="fidan">Fidan Alanları</option>
+      <option value="park">Parklar</option>
+    </select>
+  </div>
+
+  <div id="map"></div>
+
+  <script>
+    const map = L.map('map').setView([41.015137, 28.979530], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap katkıcıları'
+    }).addTo(map);
+
+    let savedPoints = JSON.parse(localStorage.getItem("dikimAlanlari")) || [];
+    let currentMarkers = [];
+
+    map.on('click', function (e) {
+      const latlng = e.latlng;
+      const name = prompt("Alan Adı:");
+      if (!name) return;
+
+      const desc = prompt("Açıklama:");
+      if (!desc) return;
+
+      const category = prompt("Kategori (fidan/park):", "fidan");
+      if (!["fidan", "park"].includes(category)) {
+        alert("Kategori sadece 'fidan' ya da 'park' olabilir.");
+        return;
+      }
+
+      const newPoint = {
+        name,
+        desc,
+        category,
+        lat: latlng.lat,
+        lng: latlng.lng
+      };
+
+      savedPoints.push(newPoint);
+      localStorage.setItem("dikimAlanlari", JSON.stringify(savedPoints));
+      renderMarkers(document.getElementById("filter").value);
+    });
+
+    function renderMarkers(filter = "hepsi") {
+      currentMarkers.forEach(marker => map.removeLayer(marker));
+      currentMarkers = [];
+
+      savedPoints.forEach(p => {
+        if (filter !== "hepsi" && p.category !== filter) return;
+
+        const marker = L.marker([p.lat, p.lng]).addTo(map);
+
+        marker.bindPopup(`
+          <strong>${p.name}</strong><br>
+          ${p.desc}<br>
+          <em>${p.category}</em><br><br>
+          <button onclick="deletePoint(${p.lat}, ${p.lng})">🗑️ Sil</button>
+        `);
+
+        currentMarkers.push(marker);
+      });
+    }
+
+    function deletePoint(lat, lng) {
+      if (!confirm("Bu alanı silmek istediğinize emin misiniz?")) return;
+
+      savedPoints = savedPoints.filter(p => !(p.lat === lat && p.lng === lng));
+      localStorage.setItem("dikimAlanlari", JSON.stringify(savedPoints));
+      renderMarkers(document.getElementById("filter").value);
+    }
+
+    function filterMarkers() {
+      const filterValue = document.getElementById("filter").value;
+      renderMarkers(filterValue);
+    }
+
+    renderMarkers();
+  </script>
+
+</body>
+</html>

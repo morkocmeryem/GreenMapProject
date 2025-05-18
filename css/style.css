@@ -1,3 +1,4 @@
+/* Genel Stil */
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif;
@@ -5,36 +6,33 @@ body {
   min-height: 100vh;
 }
 
+/* Giriş Ekranı */
 #giris-ekrani {
   width: 100vw;
   min-height: 100vh;
-  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow-y: auto;
   padding: 40px 0;
 }
 
 .giris-container {
-  width: 90vw;
+  width: 95%;
   max-width: 1100px;
   background: #fff;
-  border-radius: 32px;
-  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  position: relative;
-  z-index: 2;
-  min-height: 400px;
 }
 
+/* Sol Taraf */
 .giris-left {
   flex: 1 1 350px;
-  min-width: 320px;
-  padding: 48px 32px 32px 32px;
+  min-width: 300px;
+  padding: 40px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,79 +40,65 @@ body {
 
 .giris-logo {
   width: 60px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 .giris-left h2 {
+  font-size: 2rem;
   color: #219150;
-  font-size: 2.1rem;
-  margin-bottom: 18px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  margin-bottom: 14px;
 }
 
 .giris-left p {
+  font-size: 1rem;
+  margin-bottom: 12px;
   color: #333;
-  font-size: 1.08rem;
-  margin-bottom: 18px;
-  font-weight: 400;
 }
 
-.giris-amac {
-  background: #e6fbe6;
-  color: #219150;
-  padding: 10px 16px;
-  border-radius: 8px;
-  margin-bottom: 18px;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
-}
-
+.giris-amac,
 .giris-list {
-  margin-bottom: 18px;
-  color: #222;
-  font-size: 1rem;
+  background: #e6fbe6;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #219150;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .giris-list ul {
-  margin: 8px 0 0 18px;
+  margin: 10px 0 0 20px;
   padding: 0;
-  font-size: 1rem;
+  color: #222;
 }
 
+/* Buton */
 .giris-cta {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   font-weight: bold;
-  color: #219150;
-  font-size: 1.08rem;
+  margin-top: 12px;
 }
 
 #kesfetBtn {
-  margin-top: 12px;
-  padding: 14px 36px;
+  margin-top: 10px;
+  padding: 12px 28px;
   background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.10);
-  transition: background 0.2s, transform 0.2s;
-  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background 0.2s;
 }
 
 #kesfetBtn:hover {
   background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
-  transform: translateY(-2px) scale(1.04);
+  transform: scale(1.05);
 }
 
+/* Sağ Görsel */
 .giris-right {
   flex: 1 1 320px;
   min-width: 280px;
@@ -122,197 +106,149 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 32px;
 }
 
 .giris-image {
-  width: 100%;
-  max-width: 350px;
-  height: 400px;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
   border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
   border: 3px solid #b2f2c9;
-  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .giris-container {
-    flex-direction: column;
-    align-items: center;
-    min-height: unset;
-  }
-  .giris-right, .giris-left {
-    min-width: 0;
-    width: 100%;
-    padding: 24px;
-  }
-  .giris-image {
-    max-width: 100%;
-    height: 200px;
-  }
-}
-
+/* Harita Ekranı */
 #harita-ekrani {
   min-height: 100vh;
   background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 }
 
-/* Harita Ekranı Header */
+/* Harita Başlık */
 .harita-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #e5f5e0;
-  padding: 0 20px;
+  padding: 10px 20px;
   height: 60px;
   border-bottom: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.harita-header-left,
-.harita-header-center,
-.harita-header-right {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.harita-header-left {
-  flex: 0 0 60px;
-}
-
-.harita-header-center {
-  flex: 1 1 auto;
-  justify-content: center;
-}
-
-.harita-header-right {
-  flex: 0 0 180px;
-  justify-content: flex-end;
 }
 
 .harita-logo {
   width: 40px;
   height: 40px;
   object-fit: contain;
-  margin-right: 0;
 }
 
 .harita-title {
-  font-size: 1.4rem;
-  color: #222;
-  margin: 0;
+  font-size: 1.3rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  color: #222;
   text-align: center;
 }
 
 .harita-konum-btn {
-  background-color: #4caf50;
+  background: #4caf50;
   color: white;
   border: none;
-  padding: 10px 18px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-family: inherit;
+  padding: 10px 16px;
+  border-radius: 6px;
   font-size: 1rem;
-  transition: background 0.2s;
+  cursor: pointer;
 }
 
 .harita-konum-btn:hover {
-  background-color: #388e3c;
+  background: #388e3c;
 }
 
-/* Harita Ana Alan */
+/* Harita İçeriği */
 .harita-main {
-  position: relative;
   width: 100%;
-  height: calc(100vh - 60px); /* header yüksekliği kadar çıkar */
-  min-height: 400px;
-  background: none;
+  height: calc(100vh - 60px);
 }
 
-.harita-map, #map {
+#map {
   width: 100%;
   height: 100%;
-  min-height: 350px;
 }
 
-/* Legend ve Info Box */
-.harita-legend {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  background: #fff;
-  border: 2px solid #bbb;
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
-  min-width: 170px;
-}
-
+/* Bilgi Kutuları */
+.harita-legend,
 .harita-info-box {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  bottom: 16px;
   background: #fff;
   border: 2px solid #bbb;
   border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
-  min-width: 170px;
+  padding: 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  min-width: 160px;
+  z-index: 999;
 }
 
-/* Legend içindeki simgeler */
-.green-dot {
+.harita-legend {
+  left: 16px;
+}
+.harita-info-box {
+  right: 16px;
+}
+
+.green-dot, .empty-box {
   display: inline-block;
   width: 14px;
   height: 14px;
-  background-color: green;
-  border-radius: 50%;
   margin-right: 6px;
   vertical-align: middle;
+}
+
+.green-dot {
+  background: green;
+  border-radius: 50%;
 }
 
 .empty-box {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
   border: 2px solid #000;
-  margin-right: 6px;
-  vertical-align: middle;
 }
 
 /* Responsive */
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .giris-container {
+    flex-direction: column;
+    border-radius: 16px;
+  }
+
+  .giris-left, .giris-right {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .giris-image {
+    height: 200px;
+    object-fit: cover;
+  }
+
   .harita-header {
     flex-direction: column;
+    gap: 8px;
     height: auto;
-    padding: 8px 4px;
-    gap: 6px;
+    padding: 12px;
   }
-  .harita-header-left,
-  .harita-header-center,
-  .harita-header-right {
-    justify-content: center;
-    width: 100%;
-    height: auto;
-  }
+
   .harita-title {
     font-size: 1.1rem;
   }
+
   .harita-legend, .harita-info-box {
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    font-size: 0.95rem;
-    padding: 10px 8px;
+    font-size: 0.85rem;
+    padding: 10px;
     min-width: unset;
+  }
+}
+
+@media (max-width: 500px) {
+  #kesfetBtn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
   }
 }

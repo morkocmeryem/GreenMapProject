@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ne Yapmak İstersiniz?</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #219150;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .menu-card {
+      width: 260px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+
+    .menu-card span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .menu-card p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .actions button {
+      background-color: #388e3c;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .actions button:hover {
+      background-color: #2e7d32;
+    }
+
+    .actions .exit-btn {
+      background-color: #e53935;
+    }
+
+    .actions .exit-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    @media (max-width: 700px) {
+      .menu-card {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ne Yapmak İstersiniz?</h1>
+
+  <div class="menu-container">
+    <div class="menu-card" onclick="window.location.href='etkinlik.html'">
+      <span>🗓️</span>
+      <h3>Etkinlik Takvimi</h3>
+      <p>Yaklaşan fidan dikim etkinliklerini görün.</p>
+    </div>
+
+    <div class="menu-card" onclick="window.location.href='harita.html'">
+      <span>🗺️</span>
+      <h3>Haritada Keşfet</h3>
+      <p>Boş alanları ve mevcut parkları haritada keşfedin.</p>
+    </div>
+
+    <div class="menu-card" onclick="window.location.href='topluluk.html'">
+      <span>👥</span>
+      <h3>Topluluk Oluştur</h3>
+      <p>Yeni bir etkinlik oluşturun veya katılın.</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="window.location.href='index.html'">🔙 Keşfet Sayfasına Dön</button>
+    <button class="exit-btn" onclick="window.location.href='register.html'">🚪 Çıkış Yap</button>
+  </div>
+
+</body>
+</html>
